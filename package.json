@@ -1,0 +1,15 @@
+{
+    "name": "deploy-me",
+    "version": "1.0.0",
+    "description": "Deploy me",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "engines": {
+      "node": "20.11.1"
+    },
+    "dependencies": {
+      "express": "4.17.1"
+    }
+  }
