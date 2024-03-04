@@ -1,8 +1,17 @@
 const express = require("express");
+const cors = require("cors");
+
+// Create Express app
 const app = express();
 
-const port = process.env.PORT || 3000;
+// Middleware
+app.use(
+  cors({
+    origin: "https://deploy-me-wip.netlify.app/",
+  })
+);
 
+// Routes
 app.get("/", (req, res) => {
   res.send("Hello and welcome to the backend!");
 });
@@ -17,6 +26,8 @@ app.get("/api/products", (req, res) => {
   res.json(products);
 });
 
+// Server initialization
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
 });
