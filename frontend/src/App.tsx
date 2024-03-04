@@ -6,7 +6,7 @@ function App() {
   const [data, setData] = useState("");
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/products/`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/products/`)
       .then((res) => res.json())
       .then((data) => setData(JSON.stringify(data)));
   }, []);
