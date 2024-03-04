@@ -7,7 +7,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: "https://deploy-me-wip.netlify.app/",
+    origin: "https://deploy-me-wip.netlify.app",
   })
 );
 
