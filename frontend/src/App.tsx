@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+
 import "./App.css";
 
 function App() {
   const [data, setData] = useState("");
 
   useEffect(() => {
-    fetch("/api/products/")
+    fetch(`${process.env.REACT_APP_API_URL}/api/products/`)
       .then((res) => res.json())
       .then((data) => setData(JSON.stringify(data)));
   }, []);

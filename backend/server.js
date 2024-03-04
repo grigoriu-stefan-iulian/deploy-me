@@ -1,6 +1,12 @@
 const express = require("express");
 const app = express();
 
+const port = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("Hello and welcome to the backend!");
+});
+
 app.get("/api/products", (req, res) => {
   const products = [
     { id: 1, name: "Handmade Necklace", price: 25.99 },
@@ -11,6 +17,6 @@ app.get("/api/products", (req, res) => {
   res.json(products);
 });
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000");
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
