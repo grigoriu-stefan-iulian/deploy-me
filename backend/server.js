@@ -1,5 +1,8 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 
 // Create Express app
 const app = express();
@@ -11,19 +14,33 @@ app.use(
   })
 );
 
+// Middleware for parsing JSON bodies from HTTP requests
+app.use(express.json());
+
+const userName = process.env.DB_USER_NAME;
+const password = process.env.DB_PASSWORD;
+const uri = `mongodb+srv://${userName}:${password}@sig-cluster-0.6un9uuo.mongodb.net/?retryWrites=true&w=majority&appName=sig-cluster-0`;
+
+// Connect to MongoDB
+mongoose
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Database connected!"))
+  .catch((err) => console.log(err));
+
 // Routes
 app.get("/", (req, res) => {
   res.send("Hello and welcome to the backend!");
 });
 
-app.get("/api/products", (req, res) => {
-  const products = [
-    { id: 1, name: "Handmade Necklace", price: 25.99 },
-    { id: 2, name: "Knitted Scarf", price: 19.99 },
-    { id: 3, name: "Wooden Coasters", price: 14.99 },
-  ];
+// Import routes
+const productRoutes = require("./routes/productRoutes");
+app.use("/products", productRoutes); // Use productRoutes for paths starting with /products
 
-  res.json(products);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
 });
 
 // Server initialization
