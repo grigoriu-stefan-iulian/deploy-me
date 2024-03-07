@@ -8,9 +8,28 @@ const mongoose = require("mongoose");
 const app = express();
 
 // Middleware
+const allowedOrigins = [
+  "https://deploy-me-wip.netlify.app",
+  "http://localhost:5173",
+];
+
 app.use(
   cors({
-    origin: "https://deploy-me-wip.netlify.app",
+    origin: (origin, callback) => {
+      // allow requests with no origin
+      // (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+
+      if (!allowedOrigins.includes(origin)) {
+        const msg =
+          "The CORS policy for this site does not " +
+          "allow access from the specified Origin.";
+
+        return callback(new Error(msg), false);
+      }
+
+      return callback(null, true);
+    },
   })
 );
 
@@ -23,7 +42,7 @@ const uri = `mongodb+srv://${userName}:${password}@sig-cluster-0.6un9uuo.mongodb
 
 // Connect to MongoDB
 mongoose
-  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(uri)
   .then(() => console.log("Database connected!"))
   .catch((err) => console.log(err));
 
@@ -35,7 +54,6 @@ app.get("/", (req, res) => {
 // Import routes
 const productRoutes = require("./routes/productRoutes");
 app.use("/products", productRoutes); // Use productRoutes for paths starting with /products
-
 
 // Error handling middleware
 app.use((err, req, res, next) => {
