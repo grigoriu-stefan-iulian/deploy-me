@@ -50,6 +50,9 @@ app.get("/", (req, res) => {
 const productRoutes = require("./routes/productRoutes");
 app.use("/products", productRoutes); // Use productRoutes for paths starting with /products
 
+const userRoutes = require("./routes/userRoutes");
+app.use("/users", userRoutes);
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

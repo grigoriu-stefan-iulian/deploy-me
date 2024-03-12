@@ -21,6 +21,12 @@ router.get("/:id", async (req, res) => {
   res.json(product);
 });
 
+// Get products by category
+router.get("/category/:category", async (req, res) => {
+  const products = await Product.find({ category: req.params.category });
+  res.json(products);
+});
+
 // Update a product by id
 router.put("/:id", async (req, res) => {
   const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
