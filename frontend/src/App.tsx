@@ -1,22 +1,11 @@
-import { useEffect, useState } from "react";
+import "./pages/Homepage";
+
+import Homepage from "./pages/Homepage/Homepage";
 
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState("");
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/products/`)
-      .then((res) => res.json())
-      .then((data) => setData(JSON.stringify(data)));
-  }, []);
-
-  return (
-    <>
-      <h1>Handmade Crafts</h1>
-      <div className="card">data is: {data}</div>
-    </>
-  );
+  return <Homepage />;
 }
 
 export default App;
