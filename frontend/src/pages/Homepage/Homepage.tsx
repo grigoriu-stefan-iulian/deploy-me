@@ -13,8 +13,8 @@ export const Homepage: React.FC = () => {
     <div>
       <h1>Handmade Crafts</h1>
       <h2>Products</h2>
-      {data.map((product: { name: string }) => (
-        <div>{product.name}</div>
+      {data.map((product) => (
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );
