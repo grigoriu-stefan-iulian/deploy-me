@@ -2,8 +2,12 @@
 export default {
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "light-background": "#f5f5f5",
+        "dark-background": "#1a202c",
+      },
+    },
   },
   plugins: [],
-}
-
+};

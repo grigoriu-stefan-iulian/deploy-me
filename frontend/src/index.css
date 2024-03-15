@@ -13,7 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 body {
   margin: 0;
   display: flex;
@@ -29,7 +28,7 @@ h1 {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #002f58;
     background-color: #ffffff;
   }
   a:hover {
@@ -39,3 +38,24 @@ h1 {
     background-color: #f9f9f9;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #b4dcff;
+    background-color: #1f002d;
+  }
+  a:hover {
+    color: #232778;
+  }
+  button {
+    background-color: #a45151;
+  }
+}
+
+/* .light-theme {
+  background-color: var(--bg-light-background);
+}
+
+.dark-theme {
+  background-color: var(--bg-dark-background);
+} */
