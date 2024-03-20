@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { ProductCard } from "../../components/ProductCard/ProductCard";
+import { Product } from "../../types/Product";
 
 export const Homepage: React.FC = () => {
   const [data, setData] = useState([]);
@@ -13,7 +15,7 @@ export const Homepage: React.FC = () => {
     <div>
       <h1>Handmade Crafts</h1>
       <h2>Products</h2>
-      {data.map((product) => (
+      {data.map((product: Product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
